@@ -1,4 +1,8 @@
 from reflections_utils import *
+import os
+
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 REFLECTIONS_FILE = "reflections.txt"
 
@@ -30,6 +34,7 @@ def get_menu_choice():
                 return 4
 
 def add_reflection():
+    clear_console()
     print("Please Enter your Reflection: ")
 
     try:
@@ -53,6 +58,7 @@ def add_reflection():
     input("Press Enter to return to Main Menu...")
 
 def view_reflections():
+    clear_console()
     print("\n ----- Saved Reflections -----")
 
     try:
@@ -73,6 +79,7 @@ def view_reflections():
     input("Press Enter to return to Main Menu...")
 
 def search_reflections():
+    clear_console()
     print("\n ----- Search for a Reflection -----")
     print("\n Please Enter a Keyword to Search: ", end="")
 
@@ -108,3 +115,35 @@ def search_reflections():
     print()
     input("\nPress Enter to return to Main Menu...")
 
+def exit_program():
+    clear_console()
+    print("Thank you for using QuietMind.")
+    print("\nExiting Program...")
+
+def main():
+    while True:
+        try:
+            clear_console()
+            display_menu()
+            choice = get_menu_choice()
+
+            if choice == 1:
+                add_reflection()
+            elif choice == 2:
+                view_reflections()
+            elif choice == 3:
+                search_reflections()
+            elif choice == 4:
+                exit_program()
+                break
+
+        except KeyboardInterrupt:
+            print("\n Session Interrupted! Exiting Program...")
+            exit_program()
+            break
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            input("Press Enter to return to Main Menu...")
+
+if __name__ == "__main__":
+    main()
