@@ -18,3 +18,17 @@ def save_reflection(filename,text):
     except Exception as e:
         raise Exception(f"Error saving reflection: {str(e)}")
 
+
+def read_reflection(filename):
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            reflections = [line.strip() for line in file if line.strip()]
+            return reflections
+
+    except FileNotFoundError:
+        return []
+    except PermissionError:
+        raise PermissionError(f"Permission Denied: Cannot write to {filename}")
+    except Exception as e:
+        raise Exception(f"Error reading reflection: {str(e)}")
+
