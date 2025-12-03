@@ -32,3 +32,16 @@ def read_reflection(filename):
     except Exception as e:
         raise Exception(f"Error reading reflection: {str(e)}")
 
+
+def search_reflections(keyword, reflections_list):
+    if not keyword or not keyword.strip():
+        return []
+
+    keyword_lower = keyword.strip().lower()
+
+    matches = [
+        reflection for reflection in reflections_list
+        if keyword_lower in reflection.lower()
+    ]
+
+    return matches
